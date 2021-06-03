@@ -1,0 +1,509 @@
+<style type="text/css">
+    @import url('https://bug.bz/subeta/css/reset/pet.css'); 
+
+    body {
+        overflow: hidden;
+        background: #241315;
+        font-family: 'Inconsolata', serif;
+    }
+
+    /* Everything we don't need. Let me know if you do want some of these things styled. */
+    #column_2 #pet_image,
+    #column_3,
+    #pet_friends,
+    #pet_treasure h2,
+    .pet_age_info_date,
+    .pet_wco_info_date,
+    #column_1 h2 {
+        display: none;
+    }
+
+    /* PET IMAGE */
+    /* hmu if your pet still has a white background  or you don't like the faded look */
+    #pet_image {
+        background-size: 18vw 18vw;
+        background-color: #fff;
+        width: 18vw;
+        height: 18vw;
+        mix-blend-mode: multiply;
+        background-image: url('//img.subeta.net/pets/torrent_glacier.png');
+        transition: .2s;
+        animation: float 30s infinite ease-in-out;
+    }
+
+    #pet_wrap {
+        position: absolute;
+        top: 37vh;
+        left: 18vw;
+        display: block;
+        mix-blend-mode: multiply;
+        animation: tip 50s infinite ease-in-out;
+        filter: blur(2px) saturate(.7);
+        transition: .2s;
+    }
+
+    #pet_wrap:hover {
+        filter: blur(0px) saturate(1);
+    }
+
+    #pet_wrap:focus {
+        filter: blur(0px) saturate(1);
+    }
+
+    /* PET MINION */
+    #column_1 {
+        right: 10vh;
+        top: 5vh;
+        position: absolute;
+        color: none;
+        font-size: 0;
+        animation: flying 3s infinite ease-in-out;
+        mix-blend-mode: multiply;
+    }
+
+    #column_1 #pet_minion img {
+        width: 10vw;
+        filter: saturate(2) brightness(1.2);
+    }
+
+
+    /* PET INFO */
+    #column_2 {
+        position: absolute;
+        right: 2.5vw;
+        top: 30vh;
+        font-size: 3vh;
+        color: white;
+        text-shadow: 0 0 50px #8afffb;
+        font-family: 'Megrim', cursive; 
+        text-align: left;
+    }
+
+    .pet_name {
+        font-size: 10vh;
+        animation: flicker 2s infinite linear;
+        transform: rotate(4deg);
+    }
+
+    /* PET TREASURE */
+
+    #pet_treasure {
+        /* Change the amount of autos for the desired amount of treasures in a row */
+        grid-template-columns: auto auto auto auto; 
+        overflow: scroll;
+        scroll-snap-type: x mandatory;
+        position: absolute;
+        bottom: 20vh;
+        right: 25vw;
+        width: 35vw;
+        height: 20vh;
+        overflow-x: hidden;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        padding-bottom: 10vh;
+    }
+
+    .treasure_item img {
+        width: 10vw
+    }
+
+    .treasure_item {
+        mix-blend-mode: multiply;
+        padding: 1vh 1vw;
+        width: 10vw;
+        object-fit: contain;
+        object-position: bottom;
+        scroll-snap-align: center;
+        z-index: 1;
+    }
+
+    /* EXTRA FLUFF */
+    /* WINE GLASS */
+
+    #glass {
+        border-radius: 50% 50% 50% 50% / 15% 15% 85% 85%;
+        display: block;
+        padding: 5vh 5vw;
+        position: absolute;
+        top: 20vh;
+        left: 10vw;
+        /* Change the color of the glass here and ... */
+        background-color: rgba(210, 235, 251, 0.1); 
+        background-image: linear-gradient(222deg, rgba(0, 0, 0, 0) 0%, rgba(207, 207, 207, 0) 63%, rgba(255, 255, 255, 0.8) 100%);
+        width: 35vw;
+        height: 400px;
+        animation: tip 50s infinite ease-in-out;
+        transform-origin: bottom;
+    }
+
+    #glass:after {
+        content: '';
+        clip-path: polygon(0 0, 100% 0, 60% 100%, 40% 100%);
+        width: 2.5vw;
+        height: 50vh;
+        /* ... here! */
+        background-color: rgba(210, 235, 251, 0.1);
+        box-shadow: inset 10px -1px 10px rgba(255, 255, 255, 0.3);
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -49.5vh;
+        margin: 0 auto;
+    }
+
+
+    /* Liquid in the glass */
+    #liquid {
+        content: '';
+        border-radius: 50% 50% 50% 50% / 0% 0% 100% 100%;
+        position: absolute;
+        bottom: 5%;
+        left: 3%;
+        right: 3%;
+        /* Change liquid color here and ... */
+        background: rgba(227, 250, 255, .2); 
+        width: auto;
+        height: 75%;
+        vertical-align: bottom;
+        transform: scaleY(.9);
+        z-index: -1;
+        animation: tip-liquid-surface 50s infinite ease-in-out;
+    }
+
+    #liquid:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: -4vh;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 8vh;
+        /* ... here! */
+        background: rgba(227, 250, 255, 0.2);
+        mix-blend-mode: darken;
+        border-radius: 100%;
+        animation: tip-liquid 50s infinite ease-in-out;
+    }
+
+    /* TABLE */
+
+    #table {
+        position: absolute;
+        z-index: -2;
+        background: #080500;
+        border-top: #080500 5vh solid;
+        width: 100vw;
+        height: 25vh;
+        bottom: 0;
+        left: 0;
+        box-shadow: inset 0 10vh 10vh 0vh black;
+    }
+
+
+    /* WINDOW */
+
+    #window {
+        position: absolute;
+        background-image: linear-gradient(60deg, rgba(131, 58, 180, 0.3) 0%, rgba(253, 29, 29, 0.3) 50%, rgba(252, 176, 69, 0.3) 100%),
+            radial-gradient(rgba(117, 211, 215, 0.5) 0%, rgba(92, 153, 72, 0.1) 50%, rgba(249, 231, 207, 0.3) 100%);
+        z-index: -1;
+        width: 70vw;
+        height: 60vh;
+        left: 5vw;
+        bottom: 25vh;
+        box-shadow: 0 0 10vw 0 rgba(131, 58, 180, 0.3), 0 10vw 10vw 0 rgba(252, 176, 69, 0.3);
+        border-left: 2.5vw rgba(26, 25, 23, .8) solid;
+        border-right: 2.5vw rgba(26, 25, 23, .8) solid;
+        border-top: 5vh rgba(26, 25, 23, .8) solid;
+    }
+
+    #window:after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        background: rgba(255, 255, 255, .1);
+        backdrop-filter: blur(2px);
+    }
+
+    /* TEXT on clicking the pet */
+
+    #pet_wrap:focus #text-bubble {
+        opacity: 1;
+    }
+
+    #text-bubble {
+        position: absolute;
+        left: -5vw;
+        top: 7vh;
+        display: block;
+        opacity: 0;
+        width: 9vw;
+        background-color: rgba(157, 232, 235, .7);
+        padding: 3vh 1.5vw;
+        border-radius: 45%;
+        font-family: 'Inconsolata', serif;
+        transition: .2s;
+    }
+
+    /* PIECE OF PAPER FOR POTENTIAL EXTRA WRITING */
+    #story {
+        /* Uncomment below to remove it. */
+        /* display: none */
+        background-color: #faf9cf;
+        display: block;
+        padding: 5vh 2.5vw;
+        font-family: 'Inconsolata', serif;
+        font-size: 5vh;
+        position: fixed;
+        z-index: 1000;
+        text-align: justify;
+        height: 90vh;
+        top: 90vh;
+        left: 10vw;
+        right: 10vw;
+        opacity: .2;
+        transform: rotate(-10deg);
+        overflow-y: scroll;
+        overflow: hidden;
+        transition: .2s;
+        text-decoration: none;
+        color: black;
+    }
+
+    #story:hover {
+        text-decoration: none;
+        color: black;
+        transform: translate(0, -2vh) rotate(-10deg);
+    }
+
+    #story:focus {
+        transform: rotate(0);
+        top: 10vh;
+        opacity: 1;
+    }
+
+    /* CREDIT */
+    #credit {
+        color: white;
+        padding: 2vh 1vw;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+    }
+
+    /* SPOTLIGHT */
+    .pet_spotlight {
+        color: white;
+        bottom: 10vh;
+        left: 0;
+        position: absolute;
+        padding: 2vh 1vw;
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes float {
+        0% {
+            transform: translateY(0);
+        }
+
+        30% {
+            transform: translateY(-3vh) rotate(6deg) scale(.9);
+        }
+
+        40% {
+            transform: translateY(-2vh) translateX(2vw) rotate(8deg) scale(1);
+        }
+
+        60% {
+            transform: translateY(1vh) translateX(1vw) rotate(-1deg) scale(1);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+
+    @keyframes flying {
+        0% {
+            transform: translateY(0) rotate(-20deg);
+        }
+
+        50% {
+            transform: translateY(-2vh) rotate(-20deg);
+        }
+
+        100% {
+            transform: translateY(0) rotate(-20deg);
+        }
+    }
+
+
+
+    @keyframes flicker {
+        0% {
+            text-shadow: 0 0 5px #8afffb, 0px 0px 7.5px #8afffb, 0px 0px 10px #8afffb;
+
+        }
+
+        10% {
+            text-shadow: 0 0 5px #8afffb;
+        }
+
+        20% {
+            text-shadow: 0 0 5px #8afffb, 0px 0px 7.5px #8afffb, 0px 0px 10.0px #8afffb;
+
+        }
+
+        60% {
+            text-shadow: 0 0 5.0px #8afffb;
+
+        }
+
+        70% {
+            text-shadow: 0 0 5.0px #8afffb, 0px 0px 7.5px #8afffb, 0px 0px 10.0px #8afffb;
+
+        }
+
+        90% {
+            text-shadow: 0 0 5.0px #8afffb;
+
+        }
+
+        100% {
+            text-shadow: 0 0 5.0px #8afffb, 0px 0px 7.5px #8afffb, 0px 0px 10.0px #8afffb;
+
+        }
+    }
+
+
+    @keyframes tip {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        10% {
+            transform: rotate(10deg);
+        }
+
+        20% {
+            transform: rotate(-5deg) translateY(-5vh);
+        }
+
+        35% {
+            transform: rotate(-2deg) translateY(1vh);
+        }
+
+        51% {
+            transform: rotate(8deg) translateY(-2vh);
+        }
+
+        65% {
+            transform: rotate(-1deg) translateY(-3vh);
+        }
+
+        80% {
+            transform: rotate(-2deg) translateY(1vh);
+        }
+
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+
+    @keyframes tip-liquid {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        10% {
+            transform: rotate(-1deg);
+        }
+
+        20% {
+            transform: rotate(1deg);
+        }
+
+        35% {
+            transform: rotate(2deg);
+        }
+
+        51% {
+            transform: rotate(-2deg);
+        }
+
+        65% {
+            transform: rotate(1deg);
+        }
+
+        80% {
+            transform: rotate(2deg);
+        }
+
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+
+    @keyframes tip-liquid-surface {
+        0% {
+            transform: skew(0deg, 0deg);
+        }
+
+        10% {
+            transform: skew(0deg, -1deg);
+        }
+
+        20% {
+            transform: skew(0deg, 2deg);
+        }
+
+        35% {
+            transform: skew(0deg, 2deg);
+        }
+
+        51% {
+            transform: skew(0deg, -2deg);
+        }
+
+        65% {
+            transform: skew(0deg, 1deg);
+        }
+
+        80% {
+            transform: skew(0deg, 2deg);
+        }
+
+        100% {
+            transform: skew(0deg, 0deg);
+        }
+    }
+
+
+
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+<div id="table"></div>
+<div id="window">
+</div>
+<div id="glass">
+    <div id="liquid"></div>
+</div>
+<a id="pet_wrap" href="#">
+    <div id="text-bubble">
+        You're not drunk if you can lie on the floor without holding on.
+    </div>
+    <div id="pet_image"></div>
+</a>
+<a href="#" id="story">
+    <div>Feel free to write something nice in here! (or just comment it out lololol) Have fun with your fresh little
+        baby and don't forget to hit me up if something's wrong!</div>
+</a>
+<div id="credit">code by <a href="https://subeta.net/users/Lyonid">Lyonid</a></div>
