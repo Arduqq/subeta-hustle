@@ -1,0 +1,255 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gothic+A1&display=swap" rel="stylesheet">
+<style>
+    a {
+        color: #e1baff !important;
+    }
+
+    a:hover {
+        text-decoration: none;
+        text-shadow: 0 0 2px white;
+    }
+
+    iframe {
+        width: 100%;
+        height: auto;
+        border: 0;
+    }
+
+    .comment_table {
+        background: none;
+    }
+
+    #content_comment textarea {
+        width: 95% !important;
+        height: 100% !important;
+        border: 0;
+        padding: 2vh 1vw;
+        background-color: rgba(0, 14, 20, .3);
+        color: white;
+    }
+
+
+    #content_comment input {
+        width: 95% !important;
+        background: rgb(6, 7, 18);
+    }
+
+    #content_pets tbody {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        column-gap: 0;
+        row-gap: 5vh;
+        align-items: stretch;
+    }
+
+    #content_pets tbody tr:first-child {
+        display: none;
+    }
+
+    #content_pets tbody td {
+        display: block;
+        width: 5vw;
+        height: 7vh;
+    }
+
+    .avatar_head {
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        box-shadow: 0 0 0 1px white, 0 0 0 2px black;
+        transition: .2s;
+    }
+
+    .avatar_head:hover {
+        filter: invert(1) saturate(2);
+    }
+
+    *::-webkit-scrollbar {
+        display: none;
+    }
+
+    #header-img { /* CHANGE HEADER IMAGE HERE */
+        background-image: url(https://cdn.discordapp.com/attachments/851950886488899665/851958624536494110/tumblr_86939bb7067eba3b5b6eb91cb70584e0_bdd4f0a2_540.gif);
+        position: absolute;
+        height: 25vh;
+        width: 75vw;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: black;
+    }
+
+    #header-img:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 50%);
+    }
+
+
+
+    html {
+        background-color: transparent;
+    }
+
+
+    html * {
+        color: rgb(207, 214, 255);
+        font-family: 'Gothic A1', sans-serif;
+    }
+
+    body {
+        background-color: black;
+    }
+
+    #overall {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+    }
+
+    .div_float {
+        height: 70vh;
+        width: 25vw;
+        margin: 0 1vw;
+    }
+
+    #column1 li,
+    #column2 li,
+    #column3 li {
+        flex: 1 1 30%;
+        align-items: center;
+        justify-content: center;
+        overflow-y: scroll;
+        scrollbar-width: none;
+
+    }
+    .column {
+        padding: 2vh 1vw;
+        margin-top: 25vh;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding-left: 0px;
+        background-color: #0f0e1c;
+        z-index: 1000;
+    }
+
+    #column1 {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 5%;
+        border-bottom-left-radius: 5%;
+        box-shadow: 5px 5px 0 5px rgb(6, 7, 18);
+    }
+
+    #column2 {
+        border-radius: 0;
+        box-shadow: 0 5px 0 5px rgb(6, 7, 18);
+
+    }
+
+    #column3 {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 5%;
+        border-bottom-right-radius: 5%;
+        box-shadow: -5px 5px 0 5px rgb(6, 7, 18);
+        animation: float 8s infinite ease-in-out;
+    }
+
+
+    .info_block {
+        background: none;
+    }
+
+    .block {
+        border: none;
+        background-image: none;
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .header {
+        background-color: transparent;
+        background-image: none;
+        border-bottom: 0;
+        margin: 0;
+        font-family: 'Do Hyeon', sans-serif;
+    }
+
+
+    #navigation {
+        position: fixed;
+        z-index: 10;
+        bottom: 0;
+        background-image: none;
+        background-color: transparent;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        width: auto;
+        color: white;
+        font-family: 'Do Hyeon', sans-serif;
+    }
+
+    #navigation a {
+        color: white;
+    }
+
+    #toolbox {
+        position: fixed;
+        font-size: 9px;
+        bottom: 1vw;
+        left: 1vw;
+        width: 10vw;
+        z-index: 100;
+        opacity: .7;
+    }
+
+    #toolbox p,
+    #toolbox div,
+    #toolbox #new-content label,
+    #toolbox button {
+        color: black;
+    }
+
+    #toolbox:hover {
+        opacity: 1;
+    }
+
+    #user {
+        position: absolute;
+        top: 18.8vh;
+        left: 13vw;
+        right: 0;
+        color: white;
+        font-size: 6vh;
+        font-family: 'Do Hyeon', italic;
+    }
+
+    #user a {
+        font-size: 3vh;
+        font-family: 'Do Hyeon', italic;
+    }
+
+    #credits {
+        position: absolute;
+        bottom: 0; left: 2vw; 
+    }
+
+</style>
+
+<div id="header-img"></div>
+<div id="user">Mewtwo <a href="">sMail</a> <a href="">befriend</a></div>
+<div if="credits">code by <a href="https://subeta.net/profile.php?usern=Lyonid">Lyonid</a>.</div>
