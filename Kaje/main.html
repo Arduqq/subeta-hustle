@@ -1,0 +1,421 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Open+Sans&display=swap" rel="stylesheet">
+<style>
+    /* 
+    CODE BY Lyonid COMMISSION FOR Kaje 
+    ~ Make sure to setup your layout before applying the code
+    ~ Set the 
+    */
+    /* COLUMNS */
+    
+    #column1 {
+        display: block;
+        position: fixed;
+        left: 10%;
+        bottom: 5%;
+        width: 30%;
+        height: 28.5%;
+        padding: 1vh .5vw;
+        background-color: white;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+    }
+    
+    #column1:after {
+        content: '';
+        z-index: -1;
+        display: block;
+        position: fixed;
+        height: 60%;
+        width: 30%;
+        left: 10%;
+        bottom: 35%;
+        top: 5%;
+        background-image: url(https://i.imgur.com/pekuQH4.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: auto 110%;
+    }
+    
+    #column1 .data {
+        text-align: left;
+        font-size: 2vh;
+        padding: 1vh .5vw;
+    }
+    
+    #column2 {
+        position: fixed;
+        height: auto;
+        width: 30%;
+        left: 42.5%;
+        bottom: 7.5%;
+        top: 7.5%;
+        padding: 1rem;
+        background-color: #111111;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+    }
+    
+    #column3 {
+        display: block;
+        position: fixed;
+        height: auto;
+        width: 20%;
+        left: 75%;
+        bottom: 10%;
+        top: 10%;
+        padding: 1rem;
+        background-color: white;
+        color: white;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+    }
+    
+    #column2 * {
+        color: white;
+    }
+    
+    #column3 * {
+        color: black;
+    }
+    /* SHOP LIST */
+    
+    #content_shops tbody {
+        display: flex;
+        flex-direction: row;
+        justify-items: center;
+        align-content: center;
+    }
+    
+    #content_shops img {
+        filter: invert(1) saturate(.3) hue-rotate(90deg);
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px orange, 0 0 0 2px white;
+        transition: .2s;
+        width: 3vw;
+    }
+    
+    #content_shops img:hover {
+        filter: invert(1) saturate(1) hue-rotate(80deg);
+    }
+    /* PET LIST */
+    
+    #content_pets tbody {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        column-gap: 0;
+        row-gap: 5vh;
+        align-items: stretch;
+    }
+    
+    #content_pets tbody td {
+        width: 80%;
+    }
+    
+    #content_avatar img {
+        box-shadow: 0 0 0 1px white, 0 0 0 2px black;
+    }
+    
+    #content_pets tbody tr:first-child {
+        display: none;
+    }
+    
+    #content_pets tbody td {
+        display: block;
+        width: 4vw;
+        height: 8vh;
+    }
+    
+    .avatar_head {
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        box-shadow: 0 0 0 1px rgba(223, 152, 120, 1), 0 0 0 2px black;
+        transition: .2s;
+    }
+    
+    .avatar_head:hover {
+        filter: contrast(1.2) saturate(2);
+    }
+    /* COMMENTS */
+    
+    #content_comment {
+        font-family: 'Open Sans', serif;
+        font-size: 1vh;
+        transition: .2s;
+    }
+    
+    #content_comment textarea {
+        height: 10vh !important;
+        width: 100% !important;
+        font-family: 'Open Sans', serif;
+        font-size: 1.5vh;
+        padding: 2vh 1vw;
+        background: white;
+        color: black;
+        box-shadow: 0 0 0 1px white, 0 0 0 2px black;
+        margin-top: 2vh;
+    }
+    
+    #content_comment .forminput {
+        width: 100% !important;
+        background: black;
+        color: white;
+        font-size: 2vh;
+        font-family: 'Staatliches', serif;
+        transition: .2s;
+        box-shadow: 0 0 0 1px white, 0 0 0 2px black;
+    }
+    
+    #content_comment .forminput:hover {
+        background: linear-gradient(14deg, rgba(223, 152, 120, 1) 0%, rgba(246, 168, 184, 1) 48%, rgba(214, 221, 237, 1) 100%);
+        color: black;
+        transform: translate(0, -2px);
+    }
+    /* GENERAL STYLING */
+    
+    *::-webkit-scrollbar {
+        display: none;
+    }
+    
+    body * {
+        color: #111111;
+        font-family: 'Open Sans', sans-serif;
+    }
+    
+    .info_block {
+        margin-bottom: 3vh;
+        background: none;
+        text-align: left;
+    }
+    
+    .block {
+        border: none;
+        background-image: none;
+        border-radius: 0;
+    }
+    
+    .header {
+        background-color: transparent;
+        background-image: none;
+        height: 4vh;
+        border-bottom: 0;
+        font-family: 'Staatliches', sans-serif;
+        font-size: 3.5vh;
+        overflow: hidden;
+        margin-bottom: 2vh;
+    }
+    
+    #navigation {
+        display: none;
+    }
+    
+    html,
+    body {
+        background: linear-gradient(0deg, rgba(223, 152, 120, 1) 0%, rgba(246, 168, 184, 1) 33%, rgba(214, 221, 237, 1) 100%);
+        overflow-x: scroll;
+        scrollbar-width: none;
+        height: 100%;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-color: rgba(223, 152, 120, 1);
+    }
+    
+    #toolbox {
+        position: fixed;
+        font-size: 9px;
+        bottom: 1vw;
+        right: 1vw;
+        width: 20vw;
+        z-index: 100;
+        opacity: .5;
+    }
+    
+    #toolbox:hover {
+        opacity: 1;
+    }
+    
+    a {
+        color: #e3b330 !important;
+        transition: .2s;
+        padding: 0 .5rem;
+        font-weight: bold;
+    }
+    
+    a:hover {
+        color: black!important;
+        text-decoration: none;
+    }
+    /* CREDITS */
+    
+    #credits {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: right;
+        padding: 4vh 2vw;
+        font-size: 1.2vh;
+    }
+    /* SIDEBAR */
+    
+    #links {
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 5%;
+        background: #111111;
+        font-size: 2vh;
+    }
+    
+    #links #art {
+        background-color: #ff9f87;
+        color: white !important;
+        position: fixed;
+        left: 1vh;
+        bottom: 0;
+    }
+    
+    #links #fb {
+        background-color: #889afc;
+        color: white !important;
+        position: fixed;
+        left: 1vh;
+        bottom: 10vh;
+    }
+    
+    #links a {
+        text-align: center;
+        color: #ffd970 !important;
+        display: block;
+        width: 4vw;
+        height: 8vh;
+        border: solid 1px white;
+        margin: 2vh auto;
+        border-radius: 50%;
+        font-family: 'Staatliches', sans-serif;
+        padding-top: 2vh;
+        font-size: 2.5vh;
+        transition: .2s;
+        background-color: #111111;
+    }
+    /* MOBILE MODE STYLING */
+    
+    @media (max-width: 1200px) {
+        #column1:after {
+            content: '';
+            z-index: 1000;
+            position: absolute;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        #column1 {
+            position: absolute;
+            padding-left: 30%;
+            height: 40%;
+            width: auto;
+            left: 5%;
+            right: 5%;
+            top: 15%;
+            display: flex;
+            flex-direction: row;
+            justify-items: center;
+        }
+        #column2 {
+            position: absolute;
+            height: 40%;
+            width: auto;
+            left: 5%;
+            right: 5%;
+            top: 60%;
+        }
+        #column3 {
+            position: absolute;
+            height: 40%;
+            width: auto;
+            left: 5%;
+            right: 5%;
+            top: 105%;
+            display: flex;
+            flex-direction: row;
+            justify-items: center;
+        }
+        #links {
+            display: block;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 90%;
+            width: 100%;
+            background: #111111;
+            font-size: 2vh;
+            z-index: 100;
+            height: 10%;
+        }
+        #links #art {
+            background-color: #ff9f87;
+            color: white !important;
+            position: fixed;
+            left: 80vw;
+            bottom: 88vh;
+        }
+        #links #fb {
+            background-color: #889afc;
+            color: white !important;
+            position: fixed;
+            left: 90vw;
+            bottom: 88vh;
+        }
+        #links a {
+            text-align: center;
+            color: #ffd970 !important;
+            display: block;
+            width: 6vw;
+            height: 6vw;
+            border: solid 1px white;
+            margin: auto 1vw;
+            padding-top: 2vh;
+            font-size: 2.5vh;
+            float: left;
+        }
+        #links a:hover,
+        #links #art:hover,
+        #links #fb:hover {
+            color: black !important;
+            background-color: rgba(214, 221, 237, 1);
+            box-shadow: 0 0 3px 3px rgba(246, 168, 184, .5);
+        }
+        #edit {
+            position: fixed;
+            display: block;
+            right: 1vw;
+            top: 2vh;
+            font-size: 2vh;
+        }
+    }
+</style>
+<div id="edit"><a href="https://subeta.net/profile.php?act=edit">Edit Profile</a></div>
+<div id="credits">code by <a target="__blank" href="https://subeta.net/users/Lyonid">Lyonid</a></div>
+<div id="links">
+    <a target="__blank" href="https://subeta.net/mail.php?act=new&to=Kaje">sMail</a>
+    <a target="__blank" href="https://subeta.net/friends.php?act=pending&add=Kaje">Add</a>
+    <a target="__blank" href="https://subeta.net/wishlists.php/633724">WL</a>
+    <a target="__blank" href="https://new.subeta.net/cws/shop/Kaje">CW</a>
+    <a target="__blank" id="fb" href="https://www.facebook.com/disputile/">FB</a>
+    <a target="__blank" id="art" href="http://kjepoxy.indiemade.com/">KJ</a>
+</div>
