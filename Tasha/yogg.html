@@ -1,0 +1,556 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Calligraffitti&family=Raleway&display=swap" rel="stylesheet">
+<style>
+    @import url('https://bug.bz/subeta/css/reset/pet.css');
+    /* HIDING HEADINGS AND BATTLE STATS */
+    
+    #column_3,
+    h2 {
+        display: none;
+    }
+    
+     ::-webkit-scrollbar {
+        display: none;
+    }
+    
+    html {
+        background-color: rgba(255, 255, 255, 0.01);
+    }
+    
+    body {
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(16, 23, 41, 1) 100%);
+        font-family: 'Raleway', sans-serif;
+    }
+    
+    a {
+        /* Link color */
+        color: #586e6d!important;
+    }
+    /* PET STATS AND INFO */
+    
+    #column_2 #pet_image {
+        display: none;
+    }
+    
+    #pet_image {
+        margin: 0 auto;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 33vh;
+        background-position: center;
+        /* Change to px values if sizing gets weird */
+        background-size: 15vw 30vh;
+        background-repeat: no-repeat;
+        width: 15vw;
+        height: 30vh;
+        mix-blend-mode: multiply;
+        animation: brain 5s infinite ease-in-out;
+    }
+    /* MAIN COLUMN */
+    
+    #pet_info {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: transparent;
+        box-shadow: 0 0 5vh 5vh rgba(0, 0, 0, .2);
+        overflow-y: scroll;
+        font-size: 2vh;
+        scrollbar-width: none;
+        font-family: 'Raleway', sans-serif;
+    }
+    /* PET TREASURE */
+    
+    #pet_treasure {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        row-gap: 2vh;
+        column-gap: 1vw;
+        position: fixed;
+        left: 2vw;
+        top: 20vh;
+        width: 40vw;
+        height: 70vh;
+        overflow-y: scroll;
+        background-image: url(https://i.imgur.com/Jl3b0uk.png);
+        background-size: 40vw 70vh;
+        /* Treasure maw brightness */
+        filter: brightness(.4);
+        transition: .2s;
+        padding: 18vh 10vw;
+        scrollbar-width: none;
+        scroll-snap-type: y mandatory;
+        animation: float2 12s infinite linear;
+        border-radius: 50%;
+    }
+    
+    #pet_treasure:hover {
+        background-image: url(https://i.imgur.com/oKKdeOW.png);
+        filter: brightness(1);
+        width: 50vw;
+        height: 80vh;
+        background-size: 50vw 80vh;
+        z-index: 3;
+    }
+    
+    #pet_treasure:hover .treasure_item {
+        opacity: 1;
+    }
+    
+    .treasure_item {
+        opacity: 0;
+        border-radius: 100%;
+        padding: 2vh 1vw;
+        width: 5vw;
+        height: 10vh;
+        box-shadow: 0 0 5px 5px rgba(20, 20, 20, .1), inset 0 0 20px 20px rgba(0, 0, 0, .5);
+        background: radial-gradient(circle, rgba(241, 255, 255, 1) 50%, rgba(13, 47, 46, 1) 100%);
+        transition: .2s;
+    }
+    
+    .treasure_item span {
+        opacity: 0;
+        display: inline-block;
+        position: absolute;
+        margin-left: -2.5vw;
+        width: 5vw;
+        background: #101729;
+        color: white;
+        box-shadow: 0 0 5px 5px rgba(20, 20, 20, .1);
+        padding: .5vh .25vw;
+        font-size: 1.5vh;
+        transition: .3s;
+    }
+    
+    .treasure_item:nth-child(1n+7) {
+        scroll-snap-align: start;
+    }
+    
+    .treasure_item img {
+        transition: .3s;
+        mix-blend-mode: multiply;
+    }
+    
+    .treasure_item:hover {
+        box-shadow: 0 0 5px 5px rgba(20, 20, 20, .1), inset 0 0 50px 50px rgba(255, 255, 255, .5);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    
+    .treasure_item:hover span {
+        opacity: 1;
+    }
+    /* PET FRIENDS */
+    
+    #pet_friends {
+        display: none;
+    }
+    /* PET DESCRIPTION */
+    
+    #column_2 {
+        position: fixed;
+        left: 70vw;
+        top: 0;
+        width: 20vw;
+        height: 50vh;
+        padding: 12vh 5vw;
+        font-family: 'Raleway', sans-serif;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        font-size: 0;
+        text-align: justify;
+        color: white;
+        background-image: url(https://i.imgur.com/Jl3b0uk.png);
+        background-size: 20vw 50vh;
+        background-position: center;
+        filter: brightness(.5);
+        transition: .2s;
+        border-radius: 50%;
+        animation: float 8s infinite linear;
+        z-index: 2;
+    }
+    
+    #column_2 * {
+        opacity: 0;
+    }
+    
+    #column_2:hover * {
+        opacity: 1;
+    }
+    
+    #column_2:hover {
+        background-image: url(https://i.imgur.com/oKKdeOW.png);
+        filter: brightness(1);
+        width: 26vw;
+        height: 57vh;
+        background-size: 26vw 57vh;
+        font-size: 2.5vh;
+        z-index: 3;
+        left: 65vw;
+    }
+    /* PET MINION */
+    
+    #pet_minion {
+        position: fixed;
+        left: 50vw;
+        top: 50vh;
+        width: 15vw;
+        height: 40vh;
+        padding: 12vh 5vw;
+        font-family: 'Raleway', sans-serif;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        font-size: 0;
+        text-align: justify;
+        color: white;
+        background-image: url(https://i.imgur.com/Jl3b0uk.png);
+        background-size: 15vw 40vh;
+        background-position: center;
+        /* Minion maw brightness */
+        filter: brightness(.5);
+        transition: .2s;
+        border-radius: 50%;
+        animation: float 15s infinite linear;
+        z-index: 2;
+        text-align: center;
+    }
+    
+    #pet_minion img {
+        filter: brightness(1.4);
+        height: 10vh;
+        border-radius: 100%;
+        padding: 2vh 1vw;
+        width: 6vw;
+        height: 12vh;
+        opacity: 0;
+        transition: .2s;
+        margin: 5px;
+        box-shadow: 0 0 5px 5px rgba(20, 20, 20, .1), inset 0 0 20px 20px rgba(0, 0, 0, .5);
+        background: radial-gradient(circle, rgba(241, 255, 255, 1) 50%, rgba(13, 47, 46, 1) 100%);
+    }
+    
+    #pet_minion:hover {
+        background-image: url(https://i.imgur.com/oKKdeOW.png);
+        filter: brightness(1);
+        width: 21vw;
+        height: 42vh;
+        background-size: 21vw 42vh;
+        font-size: 1.5vh;
+        z-index: 3;
+        left: 49vw;
+        top: 48vh;
+    }
+    
+    #pet_minion:hover img {
+        opacity: 1;
+    }
+    /* <3 */
+    
+    .pet_like {
+        position: fixed;
+        z-index: 5;
+        right: 5vw;
+        top: 10vh;
+    }
+    
+    .pet_like a {
+        mix-blend-mode: difference;
+        font-size: 5vh;
+        color: #203031;
+    }
+    /* CREDITS SECTION */
+    
+    #credits {
+        display: inline-block;
+        position: fixed;
+        bottom: 5vh;
+        right: 2vw;
+        color: rgba(255, 255, 255, .3);
+        text-align: center;
+        font-weight: 800;
+        font-size: 1.5vh;
+    }
+    /* Background voices 
+    Feel free to vary the sizes and positions to wherever */
+    
+    .noise {
+        position: fixed;
+        display: inline-block;
+        z-index: 2;
+        font-size: 2.5vh;
+        color: white;
+        opacity: 0;
+        font-family: Calligraffitti, serif;
+        user-select: none;
+    }
+    
+    #call-1 {
+        left: 5vw;
+        top: 4vh;
+        animation: fade 10s 2s infinite;
+        font-size: 1.5vh;
+    }
+    
+    #call-2 {
+        left: 25vw;
+        top: 6vh;
+        animation: fade2 5s infinite;
+    }
+    
+    #call-3 {
+        left: 4vw;
+        top: 90vh;
+        animation: fade 12s 5s infinite;
+        font-size: 1.6vh;
+    }
+    
+    #call-4 {
+        left: 50vw;
+        top: 90vh;
+        animation: fade 11s infinite;
+    }
+    
+    #call-5 {
+        left: 40vw;
+        top: 50vh;
+        animation: fade2 10s infinite;
+    }
+    
+    #call-6 {
+        left: 10vw;
+        top: 65vh;
+        animation: fade 16s 5s infinite;
+        font-size: 1.8vh;
+    }
+    
+    #call-7 {
+        left: 50vw;
+        top: 40vh;
+        animation: fade3 14s infinite;
+    }
+    
+    #call-8 {
+        left: 70vw;
+        top: 10vh;
+        animation: fade2 10s infinite;
+        font-size: 2.1vh;
+    }
+    /* BRAIN SCREEN */
+    
+    #brain {
+        opacity: 0;
+        transition: .5s;
+        background-color: #1e2921;
+        background-image: url(https://s6.gifyu.com/images/ezgif.com-gif-maker1feef9f1a3b2f5975.gif);
+        background-size: 100% 100%;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+    /* BRAIN MAW */
+    
+    #story_link {
+        position: fixed;
+        left: 42vw;
+        top: 5vh;
+        width: 18vw;
+        height: 40vh;
+        padding: 12vh 5vw;
+        font-family: 'Raleway', sans-serif;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        font-size: 0;
+        text-align: justify;
+        color: white;
+        background-image: url(https://i.imgur.com/Jl3b0uk.png);
+        background-size: 18vw 40vh;
+        background-position: center;
+        /* Brain maw brightness */
+        filter: brightness(.4);
+        transition: .2s;
+        border-radius: 50%;
+        animation: float2 5s infinite linear;
+        z-index: 2;
+        text-align: center;
+    }
+    
+    #story_link:hover {
+        background-image: url(https://i.imgur.com/oKKdeOW.png);
+        filter: brightness(1);
+        width: 21vw;
+        height: 42vh;
+        background-size: 21vw 42vh;
+        font-size: 2.5vh;
+        z-index: 3;
+        left: 39vw;
+        top: 3vh;
+        padding-top: 20vh;
+    }
+    
+    #story_link:focus~#brain {
+        opacity: 1;
+        z-index: 4;
+    }
+    
+    #story_link:focus~#story {
+        left: 70vw;
+        right: 0vw;
+        z-index: 5;
+    }
+    
+    #story_link:focus {
+        width: 50vw;
+        transition: 1s;
+        height: 100vh;
+        background-size: 50vw 100vh;
+        margin: 0 auto;
+    }
+    
+    #story {
+        display: block;
+        position: fixed;
+        right: -30vw;
+        top: 0;
+        bottom: 0;
+        left: 100vw;
+        opacity: .3;
+        /* Story background on brain screen */
+        background: rgba(25, 47, 45, 1);
+        color: white;
+        box-shadow: 0 0 10vw 10vw rgba(25, 47, 45, 1), 0 0 5vw 5vw rgba(25, 47, 45, 1);
+        padding: 10vh 5vw;
+        transition: 1.2s;
+    }
+    
+    #story:hover {
+        opacity: 1;
+    }
+    /* ANIMATIONS */
+    
+    @keyframes float {
+        0% {
+            transform: translate(0, 0);
+        }
+        25% {
+            transform: translate(0, .5vw);
+        }
+        50% {
+            transform: translate(2vh, .5vw) rotate(5deg);
+        }
+        75% {
+            transform: translate(-.3vh, -1vw);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+    
+    @keyframes float2 {
+        0% {
+            transform: translate(0, 0);
+        }
+        25% {
+            transform: translate(-1vh, 1vw);
+        }
+        50% {
+            transform: translate(0, .5vw) rotate(-5deg);
+        }
+        75% {
+            transform: translate(.2vh, 1vw);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+    
+    @keyframes fade {
+        0% {
+            transform: rotate(0);
+        }
+        25% {
+            transform: rotate(-4deg);
+            opacity: .3;
+        }
+        100% {
+            transform: rotate(0);
+        }
+    }
+    
+    @keyframes fade2 {
+        0% {
+            transform: rotate(0);
+        }
+        60% {
+            transform: rotate(16deg);
+            opacity: .4;
+        }
+        100% {
+            transform: rotate(0);
+        }
+    }
+    
+    @keyframes fade3 {
+        0% {
+            transform: rotate(0);
+        }
+        35% {
+            transform: rotate(1deg);
+            opacity: .45;
+        }
+        100% {
+            transform: rotate(0);
+        }
+    }
+    
+    @keyframes brain {
+        0% {
+            opacity: 1;
+        }
+        30%,
+        60% {
+            opacity: .3;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    /* Media Query for size changes.
+    TODO More size ranges */
+    
+    @media (max-width: 1200px) {}
+</style>
+
+<div id="call-1" class="noise">They are coming for you.</div>
+<div id="call-2" class="noise">Give in to your fear.</div>
+<div id="call-3" class="noise">Kill them all before they kill you.</div>
+<div id="call-4" class="noise">They have turned against you. Now, take your revenge.</div>
+<div id="call-5" class="noise">It WAS your fault.</div>
+<div id="call-6" class="noise">Tell yourself again that these are not truly your friends.</div>
+<div id="call-7" class="noise">You are a pawn of forces unseen.</div>
+<div id="call-8" class="noise">There is no escape. Not in this life, not in the next.</div>
+
+<a id="story_link" href="#">
+    <div>Enter the Brain.</div>
+</a>
+<div id="story">
+    <h1>This is my Story</h1>
+    <p>Yogg-Saron is the final boss encounter of the Ulduar raid dungeon. It is mainly a DPS race, but also requires high situational awareness. Yogg-Saron with no keepers was the hardest boss to defeat in the game before Algalon. The fight is lighter on
+        healing than Mimiron, one healer per five raid members is enough. Extra DPS reduces raid damage taken. Entering Yogg-Saron's room immediately starts the encounter. The fight has three phases, engaging Sara and her guardians first, then defeating
+        the Brain of Yogg-Saron and finally his body. 15 minutes after the first raid member enters Sara's room, Yogg-Saron casts Extinguish All Life, which one-shots the raid.
+    </p>
+</div>
+<div id="brain">
+    <div id="pet_image"></div>
+</div>
+
+<span id="credits">code and backgrounds by <a target="__blank" href="https://subeta.net/users/Lyonid">Lyonid</a>.</span>
