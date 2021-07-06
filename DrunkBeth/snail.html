@@ -1,0 +1,448 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+    @import url('https://bug.bz/subeta/css/reset/pet.css');
+    /* HIDING HEADINGS AND BATTLE STATS 
+    TODO Implement stats beautifully*/
+    
+    #column_3,
+    h2,
+     ::-webkit-scrollbar {
+        display: none;
+    }
+    /* GENERAL STYLING */
+    
+    html {
+        background-color: rgba(255, 255, 255, 0.01);
+    }
+    
+    body {
+        font-family: 'Share Tech Mono', monospace;
+        overflow: hidden;
+    }
+    /* LINKS */
+    
+    a {
+        transition: .3s;
+        color: #fcba03!important;
+    }
+    
+    a:hover {
+        text-decoration: none;
+        color: black!important;
+        text-shadow: 5px 0px #fcba03;
+        border-radius: 25px;
+    }
+    /* PET STATS AND INFO */
+    
+    #column_2 {
+        position: absolute;
+        display: block;
+        left: 60vw;
+        top: 10vh;
+        bottom: 10vh;
+        right: 20vw;
+        text-align: left;
+        padding: 5vh 4vw;
+        border: 5px solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(125deg, rgba(255, 183, 235, 1) 0%, rgba(255, 252, 193, 1) 100%);
+        animation: float 5s ease-in-out infinite;
+        filter: grayscale(1);
+        transition: .2s;
+        background-color: white;
+        font-size: 2vh;
+        z-index: 2;
+    }
+    
+    #column_2:hover,
+    #pet_treasure:hover {
+        filter: grayscale(0);
+    }
+    
+    #column_2 span {
+        display: inline-block;
+        padding: .3vh 0;
+    }
+    
+    #pet_image {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+        background-color: transparent;
+        width: 100%;
+        margin: 0 auto;
+        transform-origin: bottom left;
+        animation: float2 10s infinite;
+        margin-bottom: 2vh;
+    }
+    /* PET TREASURE */
+    
+    #pet_treasure {
+        border: 2px solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(125deg, rgba(255, 183, 235, 1) 0%, rgba(255, 252, 193, 1) 100%);
+        animation: float 5s ease-in-out infinite;
+        grid-template-columns: auto;
+        row-gap: 5vh;
+        position: absolute;
+        left: 80vw;
+        top: 10vh;
+        bottom: 10vh;
+        right: 10vw;
+        overflow-y: scroll;
+        padding: .5vh .5vw;
+        scroll-padding: 3.5vh 2.5vw;
+        scrollbar-width: thin;
+        scroll-snap-type: y mandatory;
+        filter: grayscale(1);
+        transition: .3s;
+    }
+    
+    .treasure_item {
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-radius: 100%;
+        padding: 2vh .2vw;
+        margin: 2vh 1vw;
+        width: 6vw;
+        height: auto;
+        transition: .2s;
+    }
+    
+    .treasure_item span {
+        opacity: 0;
+        display: inline-block;
+        position: absolute;
+        width: 6vw;
+        left: 1.5vw;
+        background: rgba(210, 210, 210, 1);
+        color: black;
+        padding: .5vh 0;
+        font-size: 1.5vh;
+        transition: .3s;
+    }
+    
+    .treasure_item img {
+        transition: .3s;
+        mix-blend-mode: multiply;
+    }
+    
+    .treasure_item:nth-child(1n+1) {
+        scroll-snap-align: start;
+    }
+    
+    .treasure_item:hover {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    
+    .treasure_item:hover span {
+        opacity: 1;
+    }
+    /* PET MINION */
+    
+    #pet_minion {
+        display: none;
+    }
+    
+    .pet_name,
+    .pet_spotlight {
+        border-bottom: 2px solid;
+        border-image-slice: 3;
+        border-image-source: linear-gradient(20deg, rgba(255, 183, 235, 1) 0%, rgba(255, 252, 193, 1) 100%);
+        width: 100%;
+        display: block;
+        padding-bottom: 2vh!important;
+    }
+    /* BLOG */
+    
+    #blog {
+        position: absolute;
+        left: 10vw;
+        top: 10vh;
+        bottom: 10vh;
+        right: 39vw;
+        background-color: white;
+        padding: 5vh 2.5vw;
+        font-family: 'Share Tech Mono', monospace;
+        animation: float 5s ease-in-out infinite;
+        border: 1vw solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(45deg, rgba(255, 252, 193, 1) 0%, rgba(255, 183, 235, 1) 100%);
+        filter: grayscale(.5);
+        overflow-y: scroll;
+        scrollbar-width: thin;
+    }
+    
+    .entry {
+        padding: 4vh 2vw;
+        margin-top: 2vh;
+        font-size: 2vh;
+        background: rgba(240, 240, 240, 1);
+        border-top: 6px solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(80deg, rgba(255, 183, 235, 1) 0%, rgba(255, 252, 193, 1) 100%);
+        transition: .3s;
+    }
+    
+    .entry:hover {
+        filter: invert(1);
+    }
+    /* SHELL ANIMATION */
+    
+    #shell {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: url(https://s6.gifyu.com/images/ezgif.com-gif-maker47b9186d6f4bc3090.gif);
+        background-size: 100vw auto;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: -1;
+        opacity: 0;
+        background-color: #261814;
+        transition: 1s;
+        filter: hue-rotate(-10deg) brightness(1.3) saturate(.8);
+        overflow: hidden;
+    }
+    
+    #pet_desc span {
+        display: inline-block;
+        border-radius: 25px;
+        border: 4px solid rgba(0, 0, 0, .1);
+        width: 100%;
+        padding: 1vh 2vw;
+    }
+    
+    #crack {
+        position: absolute;
+        clip-path: polygon(23% 0, 100% 15%, 63% 56%, 0 70%, 28% 48%, 0 24%);
+        display: block;
+        right: 22.5vw;
+        bottom: 6vh;
+        height: 20vh;
+        width: 15vw;
+        z-index: 2;
+        background: radial-gradient(circle, rgba(97, 41, 81, 1) 0%, rgba(0, 0, 0, 1) 100%);
+        text-align: center;
+        padding-top: 5vh;
+        color: white;
+        transition: .2s;
+        animation: float 5s ease-in-out infinite;
+    }
+    
+    #crack:hover {
+        width: 16vw;
+        height: 22vh;
+        right: 21vw;
+    }
+    
+    #crack:focus~#shell {
+        opacity: .7;
+        z-index: 2;
+        backdrop-filter: invert(1);
+    }
+    /* CREDITS */
+    
+    #credits {
+        position: fixed;
+        color: rgb(200, 200, 200);
+        right: 5vw;
+        bottom: 5vh;
+    }
+    /* POSITIONS FOR THE FLYING TEXTS */
+    
+    .noise {
+        position: fixed;
+        display: inline-block;
+        z-index: 2;
+        font-size: 4vh;
+        color: white;
+        opacity: 0;
+        user-select: none;
+    }
+    
+    #call-1 {
+        left: 5vw;
+        top: 4vh;
+        animation: fade 10s 2s infinite;
+        font-size: 2.5vh;
+    }
+    
+    #call-2 {
+        left: 25vw;
+        top: 6vh;
+        animation: fade 5s infinite;
+    }
+    
+    #call-3 {
+        left: 4vw;
+        top: 90vh;
+        animation: fade 12s 5s infinite;
+        font-size: 1.6vh;
+    }
+    
+    #call-4 {
+        left: 50vw;
+        top: 90vh;
+        animation: fade 11s infinite;
+    }
+    
+    #call-5 {
+        left: 40vw;
+        top: 75vh;
+        animation: fade2 10s infinite;
+    }
+    
+    #call-6 {
+        left: 10vw;
+        top: 65vh;
+        animation: fade 16s 5s infinite;
+        font-size: 2.8vh;
+    }
+    
+    #call-7 {
+        left: 50vw;
+        top: 20vh;
+        animation: fade3 14s infinite;
+    }
+    
+    #call-8 {
+        left: 70vw;
+        top: 10vh;
+        animation: fade2 10s infinite;
+        font-size: 2.1vh;
+    }
+    /* ANIMATIONS */
+    
+    @keyframes fade {
+        0% {
+            transform: rotate(0) translate(0, 0);
+        }
+        25% {
+            transform: rotate(-4deg) translate(-1vw, 1vh);
+            opacity: .6;
+        }
+        100% {
+            transform: rotate(0) translate(0, 0);
+        }
+    }
+    
+    @keyframes fade2 {
+        0% {
+            transform: rotate(0) translate(0, 0);
+        }
+        60% {
+            transform: rotate(16deg) translate(1vw, -1vh);
+            opacity: .8;
+        }
+        100% {
+            transform: rotate(0) translate(0, 0);
+        }
+    }
+    
+    @keyframes fade3 {
+        0% {
+            transform: rotate(0) translate(0, 0);
+        }
+        35% {
+            transform: rotate(1deg) translate(2vh, 0);
+            opacity: .7;
+        }
+        100% {
+            transform: rotate(0) translate(0, 0);
+        }
+    }
+    
+    @keyframes float {
+        0% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(0, 1vh);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+    
+    @keyframes float2 {
+        0% {
+            transform: translate(1vw, 0);
+        }
+        50% {
+            transform: translate(-1vw, 0);
+        }
+        100% {
+            transform: translate(1vw, 0);
+        }
+    }
+    /* Media Query for size changes.
+    TODO More size ranges */
+    
+    @media (max-width: 1200px) {
+        body {
+            overflow-x: scroll;
+            scrollbar-width: thin;
+        }
+        #blog {
+            left: 10vw;
+            right: 10vw;
+        }
+        #column_2 {
+            left: 90vw;
+            right: -30vw;
+        }
+        #pet_treasure {
+            left: 129vw;
+            right: -50vw;
+        }
+        .treasure_item {
+            width: 15vw;
+            height: 15vh;
+        }
+        .treasure_item span {
+            width: 15vw;
+        }
+        #shell {
+            background-size: auto 100vh;
+        }
+    }
+</style>
+
+<div id="blog">
+    <span>~/home/diaries</span>
+    <div class="entry">
+        <h3>Entry One: Being a Snail</h3>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+        sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
+        ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    </div>
+    <div class="entry">
+        <h3>Entry Two: Kissing a Snail</h3>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+        sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
+        ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore
+        eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,
+    </div>
+</div>
+<a href="#" id="crack"></a>
+<div id="shell">
+
+    <div id="call-1" class="noise">How do you feel?</div>
+    <div id="call-2" class="noise">It can't be that bad.</div>
+    <div id="call-3" class="noise">I guess, we're all going through stuff.</div>
+    <div id="call-4" class="noise">Do you want to come?</div>
+    <div id="call-5" class="noise">Why are you quiet?</div>
+    <div id="call-6" class="noise">Say something!</div>
+    <div id="call-7" class="noise">You're weird sometimes.</div>
+    <div id="call-8" class="noise">I like you.</div>
+
+</div>
+
+<div id="credits">code and animation by <a href="https://subeta.net/users/Lyonid">Lyonid</a></div>
