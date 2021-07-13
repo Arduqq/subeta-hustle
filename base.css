@@ -1,0 +1,44 @@
+#header,
+#bookmarks,
+#postcards,
+#menu,
+#sidebar,
+#column_3,
+#column_1 h2,
+.pet_wco_info_date,
+.owner img,
+ ::-webkit-scrollbar {
+    display: none;
+}
+
+#content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    background: transparent;
+}
+
+html {
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+#page {
+    margin: 0!important;
+    width: 100vw;
+    overflow: hidden;
+}
+
+html {
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
+body * {
+    box-sizing: border-box;
+}
