@@ -1,0 +1,435 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Inconsolata&display=swap" rel="stylesheet">
+<style>
+    *::-webkit-scrollbar {
+        display: none;
+    }
+
+    #column2,
+    #column3 {
+        display: none;
+    }
+
+    .info_block {
+        background: none;
+    }
+
+    #column1 {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 5vh;
+        width: 100vw;
+        height: 100vh;
+        background-image: url(https://i.imgur.com/EM2lMOM.gif);
+        background-repeat: no-repeat;
+        background-size: 35vw auto;
+        min-height: 100vh;
+    }
+
+    #content_comment {
+        font-family: 'Inconsolata', serif;
+        font-size: 2vh;
+        position: fixed;
+        z-index: 100;
+        top: -90vh;
+        left: 0;
+        width: 100vw;
+        height: 90vh;
+        transition: .2s;
+        background: black;
+    }
+
+    #content_comment:after {
+        content: 'write me!';
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        background: black;
+        width: 10vw;
+        height: 20vh;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -5vh;
+        border-radius: 100%;
+        margin: 0 auto;
+        color: white;
+        text-align: center;
+    }
+
+    #content_comment textarea {
+        height: 60vh !important;
+        width: 100% !important;
+        left: 10vw;
+        right: 10vw;
+        top: 0;
+        margin: 0 auto;
+        font-family: 'Inconsolata', serif;
+        font-size: 5vh;
+        padding: 5vh 2.5vw;
+        background: #030d0d;
+        color: white;
+    }
+
+    #content_comment .forminput {
+        width: 100% !important;
+        background: black;
+        color: white;
+        font-size: 4vh;
+        font-family: 'Inconsolata', serif;
+        transition: .2s;
+    }
+
+    #content_comment .forminput:hover {
+        background-color: #42efff;
+        color: black;
+        transform: translate(0, -2px);
+    }
+
+    #content_comment:hover {
+        top: 0;
+    }
+
+
+
+    .block {
+        border: none;
+        background-image: none;
+        border-radius: 0;
+    }
+
+
+    .header {
+        background-color: transparent;
+        background-image: none;
+        height: 0;
+        border-bottom: 0;
+        margin: 0;
+    }
+
+
+    #navigation {
+        position: fixed;
+        z-index: 10;
+        bottom: 0;
+        background-image: none;
+        background-color: transparent;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        width: auto;
+        color: white;
+        font-family: 'Inconsolata', sans-serif;
+    }
+
+    #navigation a {
+        color: white;
+    }
+
+    html {
+        background-color: transparent;
+    }
+
+
+    #toolbox {
+        position: fixed;
+        font-size: 9px;
+        bottom: 1vw;
+        left: 1vw;
+        width: 10vw;
+        z-index: 100;
+        opacity: .5;
+    }
+
+    #toolbox:hover {
+        opacity: 1;
+    }
+
+    #hub {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        overflow-x: scroll;
+        display: flex;
+        flex-direction: row;
+        scroll-snap-type: x mandatory;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    #hub-nav {
+        position: fixed;
+        font-size: 3vh;
+        left: 0;
+        top: 60vh;
+        z-index: 100;
+        font-family: 'VT323', serif;
+    }
+
+    #hub-nav span {
+        font-size: 3.5vh;
+        padding-left: 2vw;
+        color: white;
+        text-shadow: 0 0 0 5px white, 0 0 10px 10px black, 0 0 20px 20px black;
+
+    }
+
+    #hub-nav a {
+        text-align: right;
+        width: 15vw;
+        display: inline-block;
+        padding: 1vh .5vw;
+        background-color: rgba(0, 0, 0, 0.3);
+        color: white !important;
+        transition: .2s;
+    }
+
+    #hub-nav a:hover {
+        filter: invert(1);
+    }
+
+    #hub .character {
+        scroll-snap-align: center;
+        width: 100%;
+        height: 100%;
+        flex: 0 0 100%;
+        font-family: 'VT323', serif;
+        position: relative;
+    }
+
+    #hub .character h1 {
+        position: absolute;
+        top: 7.5vh;
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 6vh;
+        font-weight: 800;
+        color: white;
+        text-shadow: 0 0 5px black, 0 0 15px black, 0 0 25px black;
+    }
+
+    .character p {
+        display: block;
+        padding: 4vh 2vw;
+        text-align: justify;
+        font-size: 3vh;
+        position: absolute;
+        width: auto;
+        height: auto;
+        overflow-y: scroll;
+        left: 20vw;
+        right: 20vw;
+        top: 20vh;
+        bottom: 50vh;
+        background-color: black;
+        color: white;
+        box-shadow: 0 0 0 4px white, 0 0 0 20px black;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        transition: .3s;
+        animation: float 10s infinite ease-in-out;
+    }
+
+    .character p:hover {
+        z-index: 3;
+        background: white;
+        color: black;
+        box-shadow: 0 0 0 4px white, 0 0 0 20px black, 0 0 24px 24px white;
+    }
+
+    #hub .character #pet-list {
+        position: absolute;
+        left: 30vw;
+        right: 20vw;
+        top: 51vh;
+        bottom: 10vh;
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    #hub .character #pet-list .pet {
+        position: relative;
+        display: flex;
+        flex-grow: 1;
+        flex-direction: row;
+        background-color: white;
+        box-shadow: 0 0 0 2px black, 0 0 0 3px white;
+        margin: 4vh 0;
+        height: 100px;
+    }
+
+    .pet img {
+        width: auto;
+        height: 100%;
+        padding: 1vh .5vw;
+    }
+
+    .pet span {
+        padding: 1vh .5vw;
+        overflow-y: scroll;
+        align-content: justify;
+        width: 80%;
+        font-size: 2.5vh;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    #portals {
+        background: radial-gradient(circle, rgba(9, 13, 34, 1) 0%, rgba(62, 16, 28, 1) 100%);
+        box-shadow: inset 0 0 0 20px black, inset 0 0 25px 25px black;
+    }
+
+    #cafe {
+        background: radial-gradient(circle, rgba(255, 199, 255, 1) 0%, rgba(90, 92, 110, 1) 100%);
+        box-shadow: inset 0 0 0 20px black, inset 0 0 25px 25px black;
+    }
+
+    #galeria {
+        background: radial-gradient(circle, rgba(242, 255, 201, 1) 0%, rgba(252, 186, 3, 1) 100%);
+        box-shadow: inset 0 0 0 20px black, inset 0 0 25px 25px black;
+    }
+
+    .character-avatar div {
+        float: left;
+        border: 0 !important;
+        left: 15vw;
+        bottom: 2.5vh;
+        z-index: 2;
+        max-width: 16vw;
+        width: auto;
+        height: 55vh;
+        position: absolute;
+    }
+
+    .character-avatar div img {
+        image-rendering: crisp-edges;
+        max-width: 16vw;
+        width: auto;
+        height: 55vh;
+    }
+
+    .character-avatar p {
+        display: none !important;
+    }
+
+    #commissions {
+        position: absolute;
+        left: 45vw;
+        right: 20vw;
+        top: 55vh;
+        bottom: 10vh;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translate(0, 0)
+        }
+
+        20% {
+            transform: translate(5px, -5px)
+        }
+
+        40% {
+            transform: translate(6px, 5px)
+        }
+
+        60% {
+            transform: translate(-5px, -5px)
+        }
+
+        80% {
+            transform: translate(-5px, 7px)
+        }
+
+        100% {
+            transform: translate(0, 0)
+        }
+    }
+</style>
+<div id="hub">
+    <div id="hub-nav"><span>Navigation</span><br>
+        <a href="#portals">Rift Haven [Pets]</a><br>
+        <a href="#cafe">Café Zwist [Social]</a><br>
+        <a href="#galeria">Galeria Hybris [Commissions]</a>
+    </div>
+    <div id="portals" class="character">
+        < <h1>Rift Haven</h1>
+            <span class="character-name">Arvis</span>
+            <div class="character-avatar">[outfit=1122126]</div>
+            <p>Aha, another traveler! We are looking for new test subjects to toss into these portals that have opened
+                up since our journey began. No compensation, no security, this is no place for scaredy cats! That's all
+                the information we currently have. Just try to survive, okay?</p>
+            <div id="pet-list">
+                <div class="pet"><img src="https://img.subeta.net/pets/lain_nostalgic.png"><span><a target="__blank"
+                            href="https://subeta.net/petinfo.php?petid=6005884"><span>The Forest of Beginnings</a> is
+                        the manifestation of a peaceful death. In iridescent skies, entities fly, thrive and observe as
+                        they make their way through the thicket. A former divine dragon <b>Ventuswill</b> is said to
+                        wander its skies in everlasting sorrow.</span></div>
+
+                <div class="pet"><img src="https://img.subeta.net/pets/hikei_chibi.png"><span><a target="__blank"
+                            href="https://subeta.net/petinfo.php?petid=6005922">Wintervald</a> is a place of serentiy. A
+                        place for creatures to let go of any doubts - a place to stay and never leave.
+                        <b>Ferdinante</b>, a child of The Chain has been cleansing the land of vengeful spirits.</span>
+                </div>
+
+                <div class="pet"><img src="https://img.subeta.net/pets/priggle_galactic.png"><span><a target="__blank"
+                            href="https://subeta.net/petinfo.php?petid=6006064">The Shattered Village</a> is a domain
+                        for the unwanted. A place where ones desires become fodder for the reigning creature called
+                        <b>Bramimonde</b>.</span></div>
+
+                <div class="pet"><img src="https://img.subeta.net/pets/810_scribble.png"><span><a target="__blank"
+                            href="https://subeta.net/petinfo.php?petid=6006150">leeks.bay</a> was the beginning of an
+                        organization called <i>The Chain</i>. Being a common site of literature piracy, <b>Cipolino</b>,
+                        an activist in the riots against The Rotten Aristocrats, is claimed to be the initiator of the
+                        group.</span></div>
+            </div>
+    </div>
+    <div id="cafe" class="character">
+        <h1>Café Zwist</h1>
+        <span class="character-name">Orson</span>
+        <div class="character-avatar">[outfit=1121903]</div>
+        <p>Ahoi, take a seat, drop a message! Times are tough, so let's connect and do the cool stuff! I go by
+            <i>he/they</i> and mostly meddle with the dark arts of creating weird pets that only cool kids get and spend
+            way too much time on art that no one will ever see. Hit me up if you want to talk, need some love or would
+            love to collaborate on something!<br>
+            <a target="__blank" href="https://subeta.net/mail.php?act=new&to=Lyonid">sMail</a>
+            <a target="__blank" href="https://subeta.net/friends.php?act=pending&add=Lyonid">Friend</a>
+            <a target="__blank" href="https://subeta.net/wishlists.php/Lyonid">Wishlist</a>
+        </p>
+    </div>
+
+    <div id="galeria" class="character">
+        <h1>Galeria Hybris</h1>
+        <span class="character-name">Minerva</span>
+        <div class="character-avatar">[outfit=1122439]</div>
+        <p>Fortunate soul, behold my work. I enjoy making silly websites, animating weird scenery and drawing things
+            that most likely won't make it on here. Drop me a message if you would like to change up your profile or pet
+            page. Prices usually range between 500-1500 CSC depending on your ideas and my limitations. If you do not
+            have the resources to spare, share your creative input and I am sure we can figure something out! Here's
+            some work so far! Any further information in <a href="https://subeta.net/forums.php/read/918934">my
+                shop</a>.
+        </p>
+        <div id="commissions">
+            <a href="https://subeta.net/users/Mewtwo"><img
+                    src="https://img.subeta.net/items/custom/345743_152030.gif"></a>
+            <a href="https://subeta.net/petinfo.php?petid=977018"><img
+                    src="https://img.subeta.net/items/custom/595027_212907.gif"></a>
+            <a href="https://subeta.net/petinfo.php?petid=6005939"><img
+                    src="https://img.subeta.net/items/beanbag_experiment_4423.gif"></a>
+        </div>
+    </div>
+</div>
