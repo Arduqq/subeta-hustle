@@ -1,0 +1,408 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&family=Staatliches&display=swap" rel="stylesheet">
+<style>
+    *::-webkit-scrollbar {
+        display: none;
+    }
+    
+    html {}
+    
+    html * {
+        font-family: 'Vollkorn', serif;
+        font-size: 100%;
+        scrollbar-width: thin;
+    }
+    
+    body {
+        /* BACKGROUND IMAGE */
+        background: #fafafa;
+        overflow: hidden;
+        background-size: 20vw auto;
+        font-size: calc(10px + 1vh);
+    }
+    
+    #overall {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+    }
+    
+    #column1 {
+        height: auto;
+        padding: 10vh 5vw;
+        left: 20vw;
+        width: 60vw;
+        bottom: 5vh;
+        top: 50vh;
+        background: #fafafa;
+        color: #1a1a1a;
+        position: fixed;
+        overflow: hidden;
+    }
+    
+    #column2 {
+        height: auto;
+        padding: 0;
+        left: 20vw;
+        width: 60vw;
+        bottom: -30vh;
+        top: 100vh;
+        color: #fafafa;
+        background: transparent;
+        position: fixed;
+        overflow: visible;
+        z-index: 1000;
+        transition: .3s;
+    }
+    
+    #column2:hover {
+        top: 70vh;
+        bottom: 0;
+    }
+    
+    #column2:before {
+        content: '';
+        width: 100%;
+        height: 12vh;
+        background: url(https://i.imgur.com/SdqNkwH.png);
+        background-position: center;
+        background-size: auto 100%;
+        display: block;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: -4vh;
+    }
+    
+    #column3 {
+        display: none;
+    }
+    
+    .info_block {
+        background: none;
+    }
+    
+    .block {
+        border: none;
+        background-image: none;
+        border-radius: 0;
+        width: 100%;
+    }
+    
+    .header {
+        background: transparent;
+        border-bottom: 0;
+        margin: 0;
+        font-family: 'Staatliches';
+        font-size: calc(20px + 2vh);
+        height: 0;
+        padding: 1vh 0;
+        color: #1a1a1a;
+    }
+    
+    #navigation {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        background-image: none;
+        left: 0;
+        right: 0;
+        text-align: center;
+        width: auto;
+        height: 4vh;
+        font-size: 2vh;
+        background-color: #fafafa;
+        color: #9a9a9a;
+        font-family: 'Staatliches', sans-serif;
+    }
+    
+    #navigation a {
+        font-family: 'Staatliches', sans-serif;
+    }
+    
+    .div_float {
+        margin: 0 0;
+    }
+    
+    #column1 li,
+    #column2 li,
+    #column3 li {
+        flex: 0 0 auto;
+        min-height: 50px;
+        align-items: center;
+        justify-content: center;
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+    
+    .column {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .avatar_head {
+        background-repeat: no-repeat;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        transition: .2s;
+        filter: saturate(.4);
+        opacity: .5;
+        border: 0;
+    }
+    
+    .avatar_head:hover {
+        opacity: 1;
+        filter: saturate(1);
+    }
+    
+    a {
+        /* LINK COLOR */
+        color: #9a9a9a !important;
+        transition: .3s;
+    }
+    
+    a img {
+        position: relative;
+        z-index: 100;
+    }
+    
+    a:hover {
+        /* LINK HOVER STYLING */
+        text-decoration: none;
+        color: #1a1a1a!important;
+    }
+    
+    #header_profile {
+        background: none;
+    }
+    
+    #content_pets,
+    #content_blank,
+    #content_comment {
+        padding: 5vh 1vw;
+        background: transparent;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        display: block;
+        margin-top: 0;
+    }
+    /* PETS */
+    
+    #content_pets tbody {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        column-gap: 0;
+        row-gap: 3vh;
+        align-items: stretch;
+    }
+    
+    #content_pets tbody tr:first-child {
+        display: none;
+    }
+    
+    #content_pets tbody td {
+        display: block;
+        width: 95%;
+        height: 50px;
+        float: left;
+        font-size: calc(9px + 1vh);
+        color: white!important;
+    }
+    /* COMMENTS */
+    
+    #content_comment tbody,
+    #content_comment td,
+    #content_comment tr {
+        display: block;
+    }
+    
+    #content_comment {
+        font-size: 1.25vh;
+        transition: .2s;
+    }
+    
+    #content_comment textarea {
+        height: 15vh !important;
+        width: 100% !important;
+        font-size: 1.75em;
+        padding: 2vh 1vw;
+        background: white;
+        color: black;
+        border: 0;
+        margin-top: 0;
+        border: .5vw solid #1a1a1a;
+        transition: .3s;
+    }
+    
+    #content_comment .forminput {
+        border: none;
+        color: #1a1a1a;
+        width: 100% !important;
+        font-size: 2.2vh;
+        background: transparent;
+        transition: .3s;
+        font-family: 'Staatliches', sans-serif;
+    }
+    
+    #content_comment .forminput:hover {
+        background: transparent;
+        color: #1a1a1a;
+        transform: translate(0, 2px);
+    }
+    /* MISC */
+    
+    #toolbox {
+        position: fixed;
+        font-size: 9px;
+        bottom: 1vw;
+        right: 1vw;
+        width: 10vw;
+        z-index: 100;
+        opacity: .7;
+    }
+    
+    #toolbox p,
+    #toolbox div,
+    #toolbox #new-content label,
+    #toolbox button {
+        color: black;
+    }
+    
+    #toolbox:hover {
+        opacity: 1;
+    }
+    
+    #user {
+        position: absolute;
+        top: 18.8vh;
+        left: 13vw;
+        right: 0;
+        color: white !important;
+        font-size: 6vh;
+    }
+    
+    #user a {
+        font-size: 3vh;
+    }
+    
+    #credits {
+        position: fixed;
+        bottom: 1vh;
+        left: 1vw;
+        color: white!important;
+        font-size: 2vh;
+    }
+    
+    #links {
+        display: flex;
+        position: fixed;
+        flex-direction: column;
+        right: 5vw;
+        left: 80vw;
+        top: 10vh;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        transition: .2s;
+    }
+    
+    #links a {
+        display: block;
+        padding: .5vh 2vw;
+        color: #1a1a1a!important;
+        font-size: calc(5px + 2vh);
+        font-family: 'Staatliches', sans-serif;
+        transition: .3s;
+        width: 100%;
+    }
+    
+    #links a:hover {
+        background: #1a1a1a;
+        color: #b56786!important;
+        transform: translateX(-5px);
+    }
+    
+    .npc {
+        position: fixed;
+        background: url(https://i.imgur.com/EO7gnJF.png);
+        top: 2vh;
+        left: 25vw;
+        height: 60vh;
+        width: 50vw;
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+    }
+    
+    .dialogue {
+        border-top-right-radius: 59%;
+        border-top-left-radius: 29%;
+        background: #fbdeff;
+        padding: 10vh 5vw;
+        position: fixed;
+        display: block;
+        top: 55vh;
+        bottom: 0;
+        left: 20vw;
+        width: 60vw;
+    }
+    
+    .dialogue h1 {
+        font-size: calc(12px + 2vh);
+        font-family: 'Staatliches', sans-serif;
+    }
+    
+    #items {
+        position: fixed;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        padding: 2vh 1vw;
+        left: 45vw;
+        top: 5vh;
+        height: 50vh;
+        width: 30vw;
+    }
+    
+    #items a {
+        display: flex;
+        height: 15vh;
+        transition: .3s;
+        font-size: calc(1vh + 5px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #items a span {
+        font-family: 'Staatliches', sans-serif;
+    }
+    
+    #items a:hover {
+        transform: scale(1.1);
+    }
+    
+    #items a img {
+        height: 100%;
+    }
+</style>
+<div class="npc"></div>
+<div class="dialogue">
+    <h1>Lyonid (he/they)</h1>
+    Hello hello, I hope you're well! I am a cheerful soul looking for their next adventure. Tell me about what you love and let's just be friends. I love the odd, the humble and passionate. Let's just doodle something together and talk about our pets!</div>
+<div id="items">
+    <a target="__blank" href="https://subeta.net/petinfo.php?petid=6006064"><img src="https://i.imgur.com/eJ4SI42.png"><span>Sealed Apocalypse</span></a>
+    <a target="__blank" href="https://subeta.net/petinfo.php?petid=6005922"><img src="https://i.imgur.com/JtvOUBK.png"><span>Essence of Doubt</span></a>
+    <a target="__blank" href="https://subeta.net/petinfo.php?petid=6006224"><img src="https://i.imgur.com/uwgfWUY.png"><span>Ratshroom</span></a>
+    <a target="__blank" href="https://subeta.net/petinfo.php?petid=6005884"><img src="https://i.imgur.com/sBLJdc7.png"><span>Refreshing Pancakes</span></a>
+    <a target="__blank" href="https://subeta.net/petinfo.php?petid=6006150"><img src="https://i.imgur.com/9FkLR7Y.png"><span>Mossy Flash Drive</span></a>
+    <a target="__blank" href="https://subeta.net/petinfo.php?petid=6007863"><img src="https://i.imgur.com/TPBQ818.png"><span>Slippery Ore</span></a>
+</div>
+<div id="links">
+    <a target="__blank" href="https://subeta.net/mail.php?act=new&to=Lyonid">sMail</a>
+    <a target="__blank" href="https://subeta.net/friends.php?act=pending&add=Lyonid">befriend</a>
+    <a target="__blank" href="https://subeta.net/wishlists.php/Lyonid">wishlist</a>
+    <a target="__blank" href="https://subeta.net/forums.php/read/918934/Valhalla-Profiles-open-Creative-hub-for-pet-and-user-profiles-FREE-Pet-Profile-Template-Dain">commission valhalla</a>
+    <a target="__blank" href="https://subeta.net/forums.php/read/920041/Alleyway-Enter-the-Limelight-Showcase-your-pets-however-you-love-EUPHORIA">enter the alleyway</a>
+</div>
