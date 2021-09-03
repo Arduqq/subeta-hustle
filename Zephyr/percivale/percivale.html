@@ -1,0 +1,403 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&family=Ranchers&display=swap" rel="stylesheet">
+<style>
+    /* code by LYONID as a commisison for percivale
+
+    NOTES
+    - only add items to the first (left) column
+    - set Items per Row for the Pets and Shops widget to 1
+
+ /* GENRAL STYLING */
+    
+    *::-webkit-scrollbar {
+        display: none;
+    }
+    
+    html * {
+        /* Overall text font */
+        font-family: 'Vollkorn', serif;
+        font-size: 100%;
+        scrollbar-width: thin;
+    }
+    
+    body {
+        /* BACKGROUND IMAGE */
+        background: url(https://i.imgur.com/BAnMB7H.png);
+        overflow: hidden;
+        background-position: 10%;
+        background-color: #ff5051;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        font-size: calc(5px + 1vh);
+    }
+    
+    #overall {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+    }
+    /* MAIN COLUMN */
+    
+    #column1 {
+        height: auto;
+        padding: 1vh 4vw;
+        right: 10vw;
+        width: 40vw;
+        bottom: 5vh;
+        top: 5vh;
+        background: #cefff2;
+        color: #0a0a0a;
+        position: fixed;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        transition: .3s;
+        border: #ffe891 solid 10px;
+        border-radius: 25px;
+        box-shadow: 5px 5px 0 5px #ffe891, inset 0 0 0 1px #ff5051;
+        scrollbar-width: none;
+    }
+    
+    #column3,
+    #column2 {
+        display: none;
+    }
+    
+    .info_block {
+        background: none;
+    }
+    
+    .block {
+        border: none;
+        background-image: none;
+        border-radius: 0;
+        width: 100%;
+    }
+    /* SECTION HEADERS */
+    
+    .header {
+        background: transparent;
+        border-bottom: 0;
+        min-width: 50%;
+        margin: 0 auto;
+        font-family: 'Ranchers';
+        letter-spacing: 5px;
+        font-size: calc(10px + 2vh);
+        height: calc(20px + 4vh);
+        padding: 1vh 2vw;
+        background-color: #f83526;
+        color: #fcdcd9;
+        text-transform: uppercase;
+        text-align: center;
+        margin-top: 2vh;
+    }
+    /* NAVIGATION */
+    
+    #navigation {
+        display: none;
+    }
+    
+    .div_float {
+        margin: 0 0;
+    }
+    
+    .data a {
+        font-size: 1rem;
+        font-family: 'Ranchers', sans-serif;
+        letter-spacing: 1px;
+    }
+    
+    #column1 li,
+    #column2 li,
+    #column3 li {
+        flex: 0 0 auto;
+        min-height: 200px;
+        align-items: center;
+        justify-content: center;
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+    
+    .column {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    a {
+        /* LINK COLOR */
+        color: #685a59 !important;
+        transition: .3s;
+        text-shadow: black 1px;
+    }
+    
+    a img {
+        position: relative;
+        z-index: 100;
+    }
+    
+    a:hover {
+        /* LINK HOVER STYLING */
+        text-decoration: none;
+        color: #500000!important;
+    }
+    
+    #header_profile {
+        background: none;
+    }
+    
+    #content_pets,
+    #content_blank,
+    #content_comment,
+    #content_shops,
+    #content_wishlist,
+    #content_avatar {
+        padding: 2vh .5vw;
+        background: transparent;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        display: block;
+        margin-top: 0;
+        font-family: 'Ranchers';
+    }
+    /* AVATAR */
+    
+    #content_avatar tbody tr {
+        margin: 0 auto;
+    }
+    
+    #content_avatar tbody tr td {
+        display: flex;
+        flex-direction: row;
+        margin: 10px;
+    }
+    
+    #content_avatar tbody tr td table tbody tr {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        column-gap: 2vw;
+        row-gap: 5vh;
+    }
+    /* PETS */
+    
+    .avatar_head {
+        background-repeat: no-repeat;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        transition: .2s;
+        filter: saturate(.4);
+        border: 0;
+        background-color: white;
+    }
+    
+    .avatar_head:hover {
+        filter: saturate(1);
+    }
+    
+    #content_pets tbody,
+    #content_shops tbody {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        column-gap: 0;
+        row-gap: 5vh;
+        align-items: stretch;
+    }
+    
+    #content_pets tbody tr:first-child,
+    #content_shops tbody tr:first-child {
+        display: none;
+    }
+    
+    #content_pets tbody td,
+    #content_shops tbody td {
+        display: block;
+        width: 95%;
+        height: 60px;
+        float: left;
+        font-size: calc(9px + 1vh);
+        color: #500000!important;
+    }
+    
+    #content_shops tbody td center {
+        transition: .3s;
+        color: #9a9a9a !important;
+        font-family: 'Ranchers'!important;
+    }
+    
+    #content_shops tbody td center:hover {
+        color: #500000!important;
+    }
+    /* COMMENTS */
+    
+    #content_comment tbody,
+    #content_comment td,
+    #content_comment tr {
+        display: block;
+    }
+    
+    #content_comment {
+        font-size: .75vh;
+        transition: .2s;
+    }
+    
+    #content_comment textarea {
+        height: 15vh !important;
+        width: 100% !important;
+        font-size: 1.25vh;
+        padding: 2vh 1vw;
+        background: #ffe891;
+        color: black;
+        border: 0;
+        margin-top: 0;
+        transition: .3s;
+    }
+    
+    #content_comment textarea:focus {
+        outline: none !important;
+    }
+    
+    #content_comment .forminput {
+        border: none;
+        color: #9a9a9a !important;
+        ;
+        width: 100% !important;
+        font-size: 2.2vh;
+        background: transparent;
+        transition: .3s;
+        font-family: 'Ranchers', sans-serif;
+        letter-spacing: 5px;
+    }
+    
+    #content_comment .forminput:hover {
+        color: #500000!important;
+        transform: translate(0, -2px);
+    }
+    /* MISC */
+    
+    #toolbox {
+        position: fixed;
+        font-size: 9px;
+        bottom: 1vw;
+        right: 1vw;
+        width: 10vw;
+        z-index: 100;
+        opacity: .7;
+    }
+    
+    #toolbox p,
+    #toolbox div,
+    #toolbox #new-content label,
+    #toolbox button {
+        color: black;
+    }
+    
+    #toolbox:hover {
+        opacity: 1;
+    }
+    
+    #user {
+        position: absolute;
+        top: 18.8vh;
+        left: 13vw;
+        right: 0;
+        color: white !important;
+        font-size: 6vh;
+    }
+    
+    #user a {
+        font-size: 3vh;
+    }
+    /* LINKS ON LEFT SIDE */
+    
+    #links {
+        display: flex;
+        position: fixed;
+        flex-direction: column;
+        left: 30vw;
+        right: 52.5vw;
+        top: 55vh;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        transition: .2s;
+    }
+    
+    #links a {
+        display: block;
+        padding: .5vh 2vw;
+        margin: 5px;
+        color: #f9fff2!important;
+        background-color: #500000;
+        font-size: calc(5px + 2vh);
+        font-family: 'Ranchers', sans-serif;
+        letter-spacing: 5px;
+        border-radius: 5px;
+        transition: .3s;
+        width: 100%;
+    }
+    
+    #links a:hover {
+        background: rgba(249, 255, 242, 1);
+        color: #b56786!important;
+        transform: translateX(-5px);
+    }
+    
+    #credits {
+        position: fixed;
+        right: 1vw;
+        bottom: 2vh;
+    }
+    
+    #back {
+        position: fixed;
+        font-family: 'Ranchers', sans-serif;
+        text-align: center;
+        width: 100px;
+        height: 100px;
+        background-color: #ffe891;
+        transform: rotate(45deg);
+        bottom: -50px;
+        left: -50px;
+    }
+    /* MOBILE */
+    
+    @media only screen and (max-width: 600px) {
+        #column1 {
+            height: auto;
+            padding: 1vh 7vw;
+            left: 5vw;
+            width: 90vw;
+        }
+        body {
+            background-size: auto 100%;
+        }
+        #column2 {
+            width: 90vw;
+        }
+        #column2:hover {
+            left: 10vw;
+            opacity: 1;
+        }
+        #column2:before {
+            width: 12vw;
+            height: 12vw;
+        }
+        #links {
+            flex-direction: row;
+            left: 5vw;
+            right: 5vw;
+            top: 90vh;
+        }
+    }
+</style>
+<div id="links">
+    <a target="__blank" href="https://subeta.net/mail.php?act=new&to=percivale">sMail</a>
+    <a target="__blank" href="https://subeta.net/friends.php?act=pending&add=percivale">befriend</a>
+    <a target="__blank" href="https://subeta.net/wishlists.php/percivale">wishlist</a>
+</div>
+<div id="credits">background image by <a href="https://twitter.com/jabbloo">@jabloo</a> ~ code by <a href="https://subeta.net/users/Lyonid">Lyonid</a>></div>
+<a href="https://subeta.net">
+    <div id="back">Go Back</div>
+</a>
