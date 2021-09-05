@@ -39,6 +39,10 @@
         height: 100vh;
         width: 100vw;
     }
+    
+    iframe {
+        width: 100%;
+    }
     /* MAIN COLUMN */
     
     #column1 {
@@ -147,12 +151,7 @@
         background: none;
     }
     
-    #content_pets,
-    #content_blank,
-    #content_comment,
-    #content_shops,
-    #content_wishlist,
-    #content_avatar {
+    .info_block {
         padding: 2vh .5vw;
         background: transparent;
         border-bottom-left-radius: 25px;
@@ -163,8 +162,9 @@
     }
     /* AVATAR */
     
-    #content_avatar tbody tr {
-        margin: 0 auto;
+    #content_avatar {
+        display: flex;
+        justify-content: center;
     }
     
     #content_avatar tbody tr td {
