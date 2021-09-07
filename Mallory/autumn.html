@@ -1,0 +1,365 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&family=Tillana&display=swap" rel="stylesheet">
+<style>
+    /* code by LYONID as a commisison for Mallory
+
+ /* GENRAL STYLING */
+    
+    *::-webkit-scrollbar {
+        display: none;
+    }
+    
+    html * {
+        /* Overall text font */
+        font-family: 'Vollkorn', serif;
+        font-size: 100%;
+        scrollbar-width: thin;
+    }
+    
+    body {
+        /* BACKGROUND IMAGE */
+        background: url(https://i.imgur.com/lEoTYLW.png);
+        background-color: #ff5051;
+        font-size: .7rem;
+    }
+    
+    #overall {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+    }
+    /* COLUMNS*/
+    
+    #column1 {
+        position: absolute;
+        width: 16vw;
+        height: 45vh;
+        top: 5vh;
+        left: 2.5vw;
+        color: #0a0a0a;
+        background: #faad50;
+        padding: 1vh 1vw;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scrollbar-width: none;
+        border-radius: 25px;
+        border: 1px solid black;
+    }
+    
+    #column2 li {
+        margin-top: 230px;
+        flex: 0 1 auto!important;
+    }
+    
+    #column2 {
+        position: absolute;
+        width: 700px;
+        height: auto;
+        top: 10vh;
+        left: 20vw;
+        background: url(https://i.imgur.com/svwp6Wr.png);
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        color: #0a0a0a;
+        overflow-y: visible;
+        z-index: 100;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    #column3 {
+        position: absolute;
+        padding: 0;
+        width: 10vw;
+        height: auto;
+        top: 12.5vh;
+        left: calc(11vw + 700px);
+        transition: .4s;
+    }
+    
+    #column3:hover {
+        left: calc(20vw + 700px)
+    }
+    
+    #column3:after {
+        content: 'Comment';
+        display: block;
+        position: absolute;
+        right: -12vh;
+        transform-origin: bottom left;
+        top: 0;
+        font-size: 1rem;
+        height: 2vw;
+        width: 12vh;
+        background: black;
+        color: white;
+        border-top-right-radius: 25px;
+        border-top-left-radius: 25px;
+        text-align: center;
+        padding: .5vh .25vw;
+        transform: rotate(90deg);
+        font-family: 'Tillana';
+        z-index: -1;
+    }
+    
+    #column3 .header {
+        display: none;
+    }
+    /* SECTION HEADERS */
+    /* GENERAL */
+    
+    iframe {
+        width: 100%;
+    }
+    
+    .info_block {
+        background: none;
+    }
+    
+    .block {
+        border: none;
+        background-image: none;
+        border-radius: 0;
+        width: 100%;
+    }
+    
+    .header {
+        background: transparent;
+        border-bottom: 0;
+        margin: 10px auto;
+        font-family: 'Tillana';
+        font-size: 1.5rem;
+        height: 51px;
+        padding: 5px;
+        color: #ffe68c;
+        text-transform: uppercase;
+        text-align: center;
+        transition: .4s;
+        text-shadow: 2px 2px black;
+    }
+    
+    #navigation {
+        display: none;
+    }
+    
+    .div_float {
+        margin: 0 0;
+    }
+    
+    .data a {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        align-items: center;
+        font-size: 1rem;
+        font-family: 'Tillana', serif;
+        letter-spacing: 1px;
+        transition: .3s;
+    }
+    
+    .data a:hover,
+    #column1 #content_blank a:hover {
+        background-color: rgba(255, 255, 255, .5);
+    }
+    
+    #column1 li {
+        flex: 1 1 auto;
+        align-items: center;
+        justify-content: center;
+        scrollbar-width: none;
+    }
+    
+    .column {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .info_block {
+        background: transparent;
+        display: block;
+        margin-top: -15px;
+    }
+    
+    a {
+        /* LINK COLOR */
+        color: #685a59 !important;
+        transition: .3s;
+        text-shadow: black 1px;
+    }
+    
+    a img {
+        position: relative;
+        z-index: 100;
+    }
+    
+    a:hover {
+        /* LINK HOVER STYLING */
+        text-decoration: none;
+        color: #500000!important;
+    }
+    
+    #header_profile {
+        background: none;
+    }
+    /* DROPDOWN SECTIONS */
+    
+    .avatar_head {
+        background-repeat: no-repeat;
+        width: 50px !important;
+        height: 30px !important;
+        margin-right: 10%;
+        transition: .2s;
+        filter: saturate(.4);
+        border: 0;
+        background-color: white;
+        border: 1px solid black;
+    }
+    
+    .avatar_head:hover {
+        filter: saturate(1);
+    }
+    
+    #content_pets tbody,
+    #column2 #content_blank tbody tr td {
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 0px;
+        width: 300px;
+        background-color: rgba(255, 227, 179, .8);
+        padding: 10px;
+        opacity: 0;
+        transition: .4s;
+    }
+    
+    #column2 #content_blank tbody tr td a {
+        padding: 2px;
+        text-align: center;
+    }
+    
+    #content_pets tbody tr:first-child {
+        display: none;
+    }
+    
+    #content_pets tbody td,
+    #column2 #content_blank tbody tr td a {
+        display: block;
+        width: 100%;
+        height: 40px;
+        font-size: 1rem;
+        margin: 4px;
+    }
+    
+    #content_pets tbody td center,
+    #column2 #content_blank tbody tr td a {
+        transition: .3s;
+        font-family: 'Tillana'!important;
+    }
+    
+    #column2_pets:hover #content_pets tbody,
+    #column2 #column2_blank:hover #content_blank tbody tr td {
+        height: 200px;
+        opacity: 1;
+    }
+    
+    #column2_pets:hover #header_pets,
+    #column2 #column2_blank:hover #header_blank {
+        filter: brightness(1.2);
+    }
+    /* COMMENTS */
+    
+    #content_comment tbody,
+    #content_comment td,
+    #content_comment tr {
+        display: block;
+    }
+    
+    #content_comment {
+        font-size: 1rem;
+        transition: .2s;
+    }
+    
+    #content_comment textarea {
+        height: 20vh !important;
+        width: 100% !important;
+        font-size: 1rem;
+        padding: 1vh .5vw;
+        color: black;
+        border: 1px solid black;
+        border-radius: 25px;
+        margin-top: 0;
+        transition: .3s;
+        background-image: url(https://i.imgur.com/TNU1kIP.jpg);
+        background-color: #ffe3cc;
+        background-size: cover;
+    }
+    
+    #content_comment textarea:focus {
+        outline: none !important;
+    }
+    
+    #content_comment .forminput {
+        border: none;
+        color: #ffe68c;
+        text-shadow: 2px 2px black;
+        width: 100% !important;
+        font-size: 1rem;
+        background: transparent;
+        transition: .3s;
+        font-family: 'Tillana', serif;
+    }
+    
+    #content_comment .forminput:hover {
+        color: #500000!important;
+        transform: translate(0, -2px);
+    }
+    /* MISC */
+    
+    #toolbox {
+        position: fixed;
+        font-size: 9px;
+        bottom: 1vw;
+        right: 1vw;
+        width: 10vw;
+        z-index: 100;
+        opacity: .7;
+    }
+    
+    #toolbox p,
+    #toolbox div,
+    #toolbox #new-content label,
+    #toolbox button {
+        color: black;
+    }
+    
+    #toolbox:hover {
+        opacity: 1;
+    }
+    
+    #user {
+        position: absolute;
+        top: 18.8vh;
+        left: 13vw;
+        right: 0;
+        color: white !important;
+        font-size: 6vh;
+    }
+    
+    #user a {
+        font-size: 3vh;
+    }
+    /* LINKS ON LEFT SIDE */
+    
+    #credits {
+        position: fixed;
+        right: 1vw;
+        bottom: 2vh;
+    }
+</style>
+<div id="credits">code by <a href="https://subeta.net/users/Lyonid">Lyonid</a></div>
