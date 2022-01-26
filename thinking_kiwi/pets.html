@@ -120,33 +120,17 @@
     }
     
     #pet_treasure {
+        padding: 10em;
         display: grid;
-        padding: 5em 20em;
-        grid-template-columns: repeat(5, 20% [col-start]);
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: repeat(5, 10rem [col-start]);
     }
     
-    .treasure_item_name {
-        display: block;
-        position: fixed;
-        width: 20vw;
-        height: 10vh;
-        left: 11vw;
-        top: 0vh;
-        z-index: 3;
-        border-radius: 25px;
-        border: 2px solid rgba(255, 255, 200, .1);
-        background: rgba(97, 11, 11, .3);
-        font-size: 0;
-        padding: 5em;
-        display: none;
-        font-family: 'Viga', sans-serif;
-    }
     
     #pet_treasure div {
-        width: 100%;
         opacity: .8;
-        padding: .5vh .25vw;
-        margin: .5vh;
+        margin: 20px;
         transition: .4s;
     }
     
@@ -169,13 +153,12 @@
     }
     
     #pet_minion {
+        z-index: -1;
         position: fixed;
-        left: 26rem;
-        bottom: 10rem;
+        left: 30rem;
+        bottom: 0;
         transition: .3s;
         color: transparent;
-        width: 100px;
-        height: 100px;
     }
     
     #pet_minion:hover {
@@ -183,34 +166,32 @@
     }
     
     #pet_minion img {
+        border: solid white 5px;
         border-radius: 100%;
+        padding: 10px;
+        width: 89px;
+        height: 89px;
         background-color: white;
-        padding: 10px
-    }
-    
-    .pet_art img {
-        height: 350px;
-        transform: scaleX(-1);
-    }
-    
-    #pet_image,
-    .pet_art {
-        position: fixed;
-        bottom: 5rem;
-        left: 5rem;
-        z-index: -1;
     }
     
     #pet_image {
-        z-index: 1;
-        border-radius: 100%;
+        position: fixed;
+        bottom: 1em;
+        left: 1em;
+        z-index: -1;
         background-color: white;
-        opacity: 0;
-        transition: .3s;
+        border-radius: 100%;
+        width: 280px; height: 280px;
+        background-position: center;
+        background-repeat: no-repeat;
     }
     
     #pet_image:hover {
-        opacity: 1;
+        background-image: url(https://i.imgur.com/pDlS3j4.png);
+        background-size: contain;
+        background-color: transparent;
+        border-radius: 0;
+        transform: scaleX(-1);
     }
     
     .links {
@@ -252,27 +233,16 @@
         height: 100%;
     }
     
-    #gallery-toggle:before {
-        content: 'Gallery';
+    label {
         display: inline-block;
         background: #a8a69b;
-        float: left;
-        margin-right: 1em;
-        border-radius: 5px;
-        height: 1.5em;
+        height: 2em;
         padding: .5em;
-        transform: translateY(-1em);
-    }
-    
-    #wardrobe-toggle:before {
-        content: 'Wardrobe';
-        display: inline-block;
-        background: #a8a69b;
-        height: 1.5em;
-        padding: .5em;
-        transform: translateY(-1em);
         border-radius: 5px;
+        margin: 10px;  user-select: none;
     }
+
+    label:checked {opacity: .3;}
     
     #gallery,
     #wardrobe {
@@ -284,16 +254,20 @@
         right: 0;
     }
     
-    #gallery-toggle:focus~#gallery {
+    #gallery-toggle:checked~#gallery {
         margin-bottom: 20%;
         height: 100%;
         overflow-y: scroll;
     }
     
-    #wardrobe-toggle:focus~#wardrobe {
+    #wardrobe-toggle:checked~#wardrobe {
         margin-bottom: 20%;
         height: 100%;
         overflow-y: scroll;
+    }
+
+    input {
+        display: none;
     }
     
     #wardrobe-gallery,
@@ -307,17 +281,19 @@
         height: 250px;
     }
 </style>
-<div class="pet_art">
-    <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/caa576b2-b924-46ff-8b08-51767c815746/deobyni-7d36ea6b-dfe3-49f5-b37b-c40f10acc77d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2NhYTU3NmIyLWI5MjQtNDZmZi04YjA4LTUxNzY3YzgxNTc0NlwvZGVvYnluaS03ZDM2ZWE2Yi1kZmUzLTQ5ZjUtYjM3Yi1jNDBmMTBhY2M3N2QucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.SXHXza3KiKoaC6fw_6rNefda-TXa2Ll9JgDSZ2vznwc">
-</div>
 <div class="links">
+    <a href="">x</a>
     <a href="#pet_treasure">Treasure</a>
     <a href="#pet_friends">Friends</a>
     <a href="#pet_desc">Story</a>
     <a href="#column_3">Stats</a>
 </div>
-<div tabindex="0" id="gallery-toggle"></div>
-<div tabindex="0" id="wardrobe-toggle"></div>
+<label for="story-toggle" id="story-label">Story</label>
+<label for="gallery-toggle" id="gallery-label">Gallery</label>
+<label for="wardrobe-toggle" id="wardrobe-label">Wardrobe</label>
+<input type="radio" name="nav" id="story-toggle">
+<input type="radio" name="nav" id="wardrobe-toggle">
+<input type="radio" name="nav" id="gallery-toggle">
 <div id="gallery">
     <div id="image-gallery">
         <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/caa576b2-b924-46ff-8b08-51767c815746/deobyni-7d36ea6b-dfe3-49f5-b37b-c40f10acc77d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2NhYTU3NmIyLWI5MjQtNDZmZi04YjA4LTUxNzY3YzgxNTc0NlwvZGVvYnluaS03ZDM2ZWE2Yi1kZmUzLTQ5ZjUtYjM3Yi1jNDBmMTBhY2M3N2QucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.SXHXza3KiKoaC6fw_6rNefda-TXa2Ll9JgDSZ2vznwc">
